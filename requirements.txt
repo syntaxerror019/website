@@ -1,0 +1,4 @@
+Flask
+requests
+newsapi-python
+g4f
