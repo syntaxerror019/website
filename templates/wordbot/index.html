@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WordBot - JKLM.FUN</title>
+       <style>
+      body {
+        background-color: #1f1f1f;
+        color: #ffffff;
+        font-family: "Arial", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .header {
+        justify-content: center;
+        align-items: center;
+        background-color: #333;
+        border-radius: 15px 15px 0 0;
+        width: 100%;
+        margin: 0;
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+
+      .stats-box {
+        background-color: #333;
+        border-radius: 15px 15px 15px 15px;
+        padding: 40px;
+        text-align: center;
+        min-width: 35%;
+        box-shadow: 0 8px 16px rgba(4, 2, 0, 1);
+      }
+
+      h1 {
+        margin-bottom: 30px;
+        margin-top: 0px;
+        font-size: 70px;
+      }
+
+      p {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+
+      a {
+        color: steelblue;
+      }
+
+      button {
+        background-color: #333;
+        padding: 10px 20px;
+        border-radius: 15px;
+        margin: 0 10px;
+        outline-width: 10px;
+        outline-color: white;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+        <div class="header">
+      <div>
+   <center>
+          <a href="/wordbot/"
+            ><button style="background-color: #444">Status 📶</button></a
+          >
+          <a href="/wordbot/about"
+            ><button style="background-color: #444">About 🤔</button></a
+          >
+          <a href="/wordbot/records"
+            ><button style="background-color: #444">Records 📜</button></a
+          >
+          <a href="/wordbot/changelog"
+            ><button style="background-color: #444">Changelog 🛠️</button></a
+          >
+        </center>
+      </div>
+    </div>
+    <br /><br /><br /><br /><br />
+    <div class="stats-box">
+      <center><h1>WordBot ⚡</h1></center>
+   
+      <br /><br />
+      <p id="elem">{{ live_data | safe }}</p>
+    </div>
+      <br><br>
+      <br><br>
+      <sub style="color: grey;">Please note that rooms can take up to a minute to show up on the list.&nbsp;&nbsp;&nbsp;Next update in <val id="update">30</val> seconds.</sub>
+     <div class="stats-box" style="text-align: left;">
+         <center><h1 style="font-size: 300%;">🎮 Active Games</h1></center>
+      <br /><br />
+      <ul style="padding-left: 25%">
+      <p id="elem" style="font-size: 100%;">{% for room_code, bot_info in bots.items() %}
+    <li style="font-size: 130%;">
+        <strong>Room Code:</strong> 
+        {% if bot_info.is_public %}
+            <a href="https://jklm.fun/{{ room_code }}" target="_blank">https://jklm.fun/{{ room_code }}</a>
+        {% else %}
+            <a href="#nocode">https://jklm.fun/••••</a> 
+        {% endif %}
+        <br>
+        <strong>Language:</strong> {{ bot_info.language }}<br>
+        <strong>Player Count:</strong> {{ bot_info.count }}<br>
+        <strong>Public Room?:</strong> {{ bot_info.is_public }}<br>
+    </li>
+    <br><br>
+{% endfor %}</p>
+</ul>
+    </div>
+  </body>
+  <script>
+// Function to countdown from 30 and refresh the page when it reaches 0
+function countdown() {
+  var counter = 30;
+  var updateElement = document.getElementById('update');
+  
+  var interval = setInterval(function() {
+    counter--;
+    updateElement.textContent = counter;
+    
+    if (counter === 0) {
+      clearInterval(interval);
+      // Refresh the page
+      history.go(0)
+    }
+  }, 1000); // Update every 1 second
+}
+
+// Call the countdown function when the page loads
+countdown();
+</script>
+</html>

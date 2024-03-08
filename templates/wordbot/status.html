@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Status</title>
+</head>
+<body>
+    <h1>Active Bots</h1>
+    <ul>
+{% for room_code, bot_info in bots.items() %}
+    <li>
+        <strong>Room Code:</strong> 
+        <a href="https://jklm.fun/{{ room_code }}" target="_blank">https://jklm.fun/{{ room_code }}</a>
+        
+        <br>
+        <strong>Language:</strong> {{ bot_info.language }}<br>
+        <strong>Peer Count:</strong> {{ bot_info.count }}<br>
+        <strong>Main Room:</strong> {{ bot_info.is_main }}<br>
+        <strong>Public Room:</strong> {{ bot_info.is_public }}<br>
+        <strong>Last Ping Time:</strong> {{ bot_info.last_ping_time }}<br>
+    </li>
+    <br><br>
+{% endfor %}
+
+    </ul>
+</body>
+</html>

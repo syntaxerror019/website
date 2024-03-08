@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WordBot - JKLM.FUN</title>
+       <style>
+      body {
+        background-color: #1f1f1f;
+        color: #ffffff;
+        font-family: "Arial", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .header {
+        justify-content: center;
+        align-items: center;
+        background-color: #333;
+        border-radius: 15px 15px 0 0;
+        width: 100%;
+        margin: 0;
+        padding-bottom: 10px;
+        padding-top: 10px;
+      }
+
+      .stats-box {
+        background-color: #333;
+        border-radius: 0 0 15px 15px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: 0 8px 16px rgba(4, 2, 0, 1);
+      }
+
+      h1 {
+        margin-bottom: 30px;
+        margin-top: 0px;
+        font-size: 70px;
+      }
+
+      p {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+
+      a {
+        color: steelblue;
+      }
+
+      button {
+        background-color: #333;
+        padding: 10px 20px;
+        border-radius: 15px;
+        margin: 0 10px;
+        outline-width: 10px;
+        outline-color: white;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+        <div class="header">
+      <div>
+        <center>
+          <a href="/wordbot/"
+            ><button style="background-color: #444">Status 📶</button></a
+          >
+          <a href="/wordbot/about"
+            ><button style="background-color: #444">About 🤔</button></a
+          >
+          <a href="/wordbot/records"
+            ><button style="background-color: #444">Records 📜</button></a
+          >
+          <a href="/wordbot/changelog"
+            ><button style="background-color: #444">Changelog 🛠️</button></a
+          >
+        </center>
+      </div>
+    </div>
+    <br /><br /><br /><br /><br />
+    <div class="stats-box">
+      <h1>WordBot ⚡ Changelog</h1>
+      <hr />
+      <br /><br />
+      <div id="log" class="texts">
+        <br>
+        <div id="log-contents">
+Loading... 🔄️
+        </div>
+      </div>
+    </div>
+       <br><br><div style="display: flex;">
+      <a href="https://stats.uptimerobot.com/DVr08fo24K/795664119">Check WordBot Uptime</a> | <a href="https://discord.gg/Mceh5cXwXG">Join WordBot Discord</a>
+    </div>
+  
+  </body>
+  <script>
+    function update_log() {
+      const githubHtmlUrl = 'https://raw.githubusercontent.com/syntaxerror019/WordBot/main/content/resources/changelog.html';
+
+      fetch(githubHtmlUrl)
+          .then(response => response.text())
+          .then(htmlContent => {
+              document.getElementById('log-contents').innerHTML = htmlContent;
+          })
+          .catch(error => {
+              console.error('Error fetching GitHub HTML:', error);
+              document.getElementById('log').innerHTML = "There was an error fetching the changelog. Check the console for more details. ‼️ 😵‍💫";
+          });
+    }
+    
+    setTimeout(update_log(), 1000);
+  </script>
+</html>
